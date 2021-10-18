@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/timer_stop"
+            android:textColor="@color/COLOR_3"
+            android:textSize="@dimen/Title_4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:text="@string/smart_stop_music"
+            android:textColor="@color/COLOR_3"
+            android:textSize="@dimen/Title_4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/execute_progress_win_bg"
+            android:drawableRight="@drawable/ic_right"
+            android:textColor="@color/COLOR_3"
+            android:textSize="@dimen/Title_4" 
+            android:paddingTop="8dp"
+            android:paddingRight="6dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_smart_stop_flag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/execute_progress_win_bg"
+            android:drawableRight="@drawable/ic_right"
+            android:textColor="@color/COLOR_3"
+            android:textSize="@dimen/Title_4" 
+            android:paddingTop="8dp"
+            android:paddingRight="6dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        style="@style/common_bt"
+        android:layout_height="@dimen/btn_height"
+        android:layout_marginTop="15dp"
+        android:text="@string/save" />
+
+</LinearLayout>
