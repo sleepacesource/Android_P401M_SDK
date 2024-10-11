@@ -8,13 +8,13 @@ import com.sleepace.p401msdk.demo.fragment.DataFragment;
 import com.sleepace.p401msdk.demo.fragment.DeviceFragment;
 import com.sleepace.p401msdk.demo.fragment.ReportFragment;
 import com.sleepace.p401msdk.demo.fragment.SettingFragment;
-import com.sleepace.sdk.baseautopillow.domain.HistoryData;
 import com.sleepace.sdk.domain.BleDevice;
 import com.sleepace.sdk.interfs.IConnectionStateCallback;
 import com.sleepace.sdk.interfs.IDeviceManager;
 import com.sleepace.sdk.manager.CONNECTION_STATE;
 import com.sleepace.sdk.p401m.P401MHelper;
 import com.sleepace.sdk.p401m.P401MHelper.WorkStatusListener;
+import com.sleepace.sdk.p401m.domain.HistoryData;
 import com.sleepace.sdk.p401m.domain.WorkStatus;
 import com.sleepace.sdk.util.SdkLog;
 

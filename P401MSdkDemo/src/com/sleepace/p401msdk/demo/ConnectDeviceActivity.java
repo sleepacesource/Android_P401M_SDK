@@ -1,13 +1,12 @@
 package com.sleepace.p401msdk.demo;
 
-import com.sleepace.p401msdk.demo.R;
-import com.sleepace.sdk.baseautopillow.domain.LoginBean;
 import com.sleepace.sdk.constant.DeviceCode;
 import com.sleepace.sdk.domain.BleDevice;
 import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CallbackData;
 import com.sleepace.sdk.manager.DeviceType;
 import com.sleepace.sdk.p401m.P401MHelper;
+import com.sleepace.sdk.p401m.domain.LoginBean;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

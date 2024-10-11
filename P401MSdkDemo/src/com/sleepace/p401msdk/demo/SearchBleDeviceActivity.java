@@ -5,15 +5,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.sleepace.p401msdk.demo.R;
 import com.sleepace.p401msdk.demo.util.BleDeviceNameUtil;
-import com.sleepace.sdk.baseautopillow.domain.LoginBean;
 import com.sleepace.sdk.domain.BleDevice;
 import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CallbackData;
 import com.sleepace.sdk.manager.DeviceType;
 import com.sleepace.sdk.manager.ble.BleHelper;
 import com.sleepace.sdk.p401m.P401MHelper;
+import com.sleepace.sdk.p401m.domain.LoginBean;
 import com.sleepace.sdk.util.SdkLog;
 
 import android.bluetooth.BluetoothAdapter;
@@ -23,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -266,7 +266,7 @@ public class SearchBleDeviceActivity extends BaseActivity {
 //		            SdkLog.log(TAG+" onLeScan deviceName:" + deviceName);
 		            //deviceName  = modelName;
 		            
-		            if(/*!TextUtils.isEmpty(modelName) &&*/ checkP401M(deviceName)){
+		            if(!TextUtils.isEmpty(modelName) && !TextUtils.isEmpty(deviceName) /*&& checkP401M(deviceName)*/){
 		            	BleDevice ble = new BleDevice();
 		            	ble.setModelName(modelName);
 		            	ble.setAddress(device.getAddress());

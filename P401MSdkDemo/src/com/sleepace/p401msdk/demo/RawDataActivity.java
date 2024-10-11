@@ -1,14 +1,13 @@
 package com.sleepace.p401msdk.demo;
 
 
-import com.sleepace.p401msdk.demo.R;
 import com.sleepace.p401msdk.demo.util.DensityUtil;
 import com.sleepace.p401msdk.demo.view.RealTimeView;
-import com.sleepace.sdk.baseautopillow.domain.OriginalData;
-import com.sleepace.sdk.interfs.IMonitorManager;
 import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CallbackData;
+import com.sleepace.sdk.p401m.CallbackType;
 import com.sleepace.sdk.p401m.P401MHelper;
+import com.sleepace.sdk.p401m.domain.OriginalData;
 import com.sleepace.sdk.util.SdkLog;
 
 import android.graphics.PointF;
@@ -84,9 +83,9 @@ public class RawDataActivity extends BaseActivity {
 		public void onResultCallback(final CallbackData<OriginalData> cd) {
 			// TODO Auto-generated method stub
 //			SdkLog.log(TAG+" rawDataCB " + cd);
-			if(cd.getCallbackType() == IMonitorManager.METHOD_RAW_DATA_OPEN){//接口执行结果回调
+			if(cd.getCallbackType() == CallbackType.RAW_DATA_START){//接口执行结果回调
 				
-			}else if(cd.getCallbackType() == IMonitorManager.METHOD_RAW_DATA){//原始数据回调
+			}else if(cd.getCallbackType() == CallbackType.RAW_DATA){//原始数据回调
 				if(cd.isSuccess()){
 					OriginalData data = cd.getResult();
 					int len = data.getHeartRate() == null ? 0 : data.getHeartRate().length;

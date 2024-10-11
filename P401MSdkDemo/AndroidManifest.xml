@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sleepace.p401msdk.demo"
-    android:versionCode="341"
-    android:versionName="3.4.1" >
+    android:versionCode="350"
+    android:versionName="3.5.0" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -22,6 +22,7 @@
         android:name="com.sleepace.p401msdk.demo.DemoApp" >
         
          <activity
+            android:exported="true"
             android:name="com.sleepace.p401msdk.demo.MainActivity"
             android:screenOrientation="portrait" ><!-- SplashActivity -->
             <intent-filter>

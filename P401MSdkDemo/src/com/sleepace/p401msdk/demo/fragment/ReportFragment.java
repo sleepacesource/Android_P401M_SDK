@@ -19,13 +19,6 @@ import com.sleepace.p401msdk.demo.view.graphview.GraphViewSeries;
 import com.sleepace.p401msdk.demo.view.graphview.GraphViewStyle;
 import com.sleepace.p401msdk.demo.view.graphview.LineGraphView;
 import com.sleepace.p401msdk.demo.view.graphview.LineGraphView.BedBean;
-import com.sleepace.sdk.baseautopillow.domain.Analysis;
-import com.sleepace.sdk.baseautopillow.domain.CollectStatus;
-import com.sleepace.sdk.baseautopillow.domain.Detail;
-import com.sleepace.sdk.baseautopillow.domain.HistoryData;
-import com.sleepace.sdk.baseautopillow.domain.RealTimeData;
-import com.sleepace.sdk.baseautopillow.domain.Summary;
-import com.sleepace.sdk.baseautopillow.util.SleepConfig;
 import com.sleepace.sdk.constant.StatusCode;
 import com.sleepace.sdk.interfs.IConnectionStateCallback;
 import com.sleepace.sdk.interfs.IDeviceManager;
@@ -34,6 +27,14 @@ import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CONNECTION_STATE;
 import com.sleepace.sdk.manager.CallbackData;
 import com.sleepace.sdk.manager.DeviceType;
+import com.sleepace.sdk.p401m.CallbackType;
+import com.sleepace.sdk.p401m.domain.Analysis;
+import com.sleepace.sdk.p401m.domain.CollectStatus;
+import com.sleepace.sdk.p401m.domain.Detail;
+import com.sleepace.sdk.p401m.domain.HistoryData;
+import com.sleepace.sdk.p401m.domain.RealTimeData;
+import com.sleepace.sdk.p401m.domain.Summary;
+import com.sleepace.sdk.p401m.util.SleepConfig;
 import com.sleepace.sdk.util.SdkLog;
 import com.sleepace.sdk.util.TimeUtil;
 
@@ -179,7 +180,7 @@ public class ReportFragment extends BaseFragment {
 									if(!isFragmentVisible()){
 										return;
 									}
-									if(cd.getCallbackType() == IMonitorManager.METHOD_RAW_DATA_CLOSE) {
+									if(cd.getCallbackType() == CallbackType.RAW_DATA_STOP) {
 										SdkLog.log(TAG+" stopOriginalData cd:" + cd);
 									}
 								}
@@ -193,7 +194,7 @@ public class ReportFragment extends BaseFragment {
 									if(!isFragmentVisible()){
 										return;
 									}
-									if(cd.getCallbackType() == IMonitorManager.METHOD_REALTIME_DATA_CLOSE) {
+									if(cd.getCallbackType() == CallbackType.REALTIME_DATA_STOP) {
 										SdkLog.log(TAG+" stopRealTimeData cd:" + cd);
 									}
 								}
@@ -205,7 +206,7 @@ public class ReportFragment extends BaseFragment {
 									if(!isFragmentVisible()){
 										return;
 									}
-									if(cd.getCallbackType() == IMonitorManager.METHOD_COLLECT_STOP) {
+									if(cd.getCallbackType() == CallbackType.COLLECT_STOP) {
 										SdkLog.log(TAG+" stopCollection cd:" + cd);
 									}
 									
@@ -226,7 +227,16 @@ public class ReportFragment extends BaseFragment {
 											
 											//同步完报告后，重新打开实时数据
 											if(MainActivity.realtimeDataOpen) {
-												getDeviceHelper().startRealTimeData(1000, realtimeCB);
+												getDeviceHelper().startRealTimeData(1000, new IResultCallback<Void>() {
+													@Override
+													public void onResultCallback(final CallbackData<Void> cd) {
+														// TODO Auto-generated method stub
+//														SdkLog.log(TAG+" realtimeCB cd:" + cd +",isAdd:" + isAdded());
+														if(cd.isSuccess()) {
+															MainActivity.realtimeDataOpen = true;
+														}
+													}
+												});
 											}
 											
 											mActivity.runOnUiThread(new Runnable() {
@@ -287,17 +297,6 @@ public class ReportFragment extends BaseFragment {
 		}
 	}
 	
-	private IResultCallback<RealTimeData> realtimeCB = new IResultCallback<RealTimeData>() {
-		@Override
-		public void onResultCallback(final CallbackData<RealTimeData> cd) {
-			// TODO Auto-generated method stub
-//			SdkLog.log(TAG+" realtimeCB cd:" + cd +",isAdd:" + isAdded());
-			if(cd.isSuccess() && cd.getCallbackType() == IMonitorManager.METHOD_REALTIME_DATA_OPEN) {
-				MainActivity.realtimeDataOpen = true;
-			}
-		}
-	};
-
 	private void initDemoData() {
 		// TODO Auto-generated method stub
 		shortData = createShortReportData(1483056407, 166);

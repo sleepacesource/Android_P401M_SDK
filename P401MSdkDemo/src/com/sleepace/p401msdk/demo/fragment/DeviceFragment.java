@@ -2,14 +2,10 @@ package com.sleepace.p401msdk.demo.fragment;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import com.sleepace.p401msdk.demo.MainActivity;
 import com.sleepace.p401msdk.demo.R;
 import com.sleepace.p401msdk.demo.SearchBleDeviceActivity;
-import com.sleepace.sdk.baseautopillow.BaseAutoPillowManager.DeviceStateListener;
-import com.sleepace.sdk.baseautopillow.domain.BatteryBean;
-import com.sleepace.sdk.baseautopillow.domain.DeviceState;
 import com.sleepace.sdk.domain.BleDevice;
 import com.sleepace.sdk.interfs.IConnectionStateCallback;
 import com.sleepace.sdk.interfs.IDeviceManager;
@@ -17,6 +13,9 @@ import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CONNECTION_STATE;
 import com.sleepace.sdk.manager.CallbackData;
 import com.sleepace.sdk.manager.DeviceType;
+import com.sleepace.sdk.p401m.P401MManager.DeviceStateListener;
+import com.sleepace.sdk.p401m.domain.BatteryBean;
+import com.sleepace.sdk.p401m.domain.DeviceState;
 import com.sleepace.sdk.util.SdkLog;
 
 import android.app.Activity;
