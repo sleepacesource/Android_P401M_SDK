@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
 	
 	private final int requestCode = 101;//权限请求码
     private List<String> unauthoPersssions = new ArrayList<String>();
-    private String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION/*, Manifest.permission.WRITE_EXTERNAL_STORAGE */};
+    private String[] permissions = new String[] {Manifest.permission.BLUETOOTH_SCAN,Manifest.permission.BLUETOOTH_CONNECT};
 	
 	//缓存数据
 	public static String deviceName, deviceId, power, version, temp, hum;
@@ -272,7 +272,7 @@ public class MainActivity extends BaseActivity {
 	
 	
 	private void checkPermissions() {
-		if(Build.VERSION.SDK_INT >= 23) {
+		if(Build.VERSION.SDK_INT >= 31) {
 			unauthoPersssions.clear();
 			//逐个判断你要的权限是否已经通过
 			for (int i = 0; i < permissions.length; i++) {
@@ -282,7 +282,13 @@ public class MainActivity extends BaseActivity {
 			}
 			//申请权限
 			if (unauthoPersssions.size() > 0) {//有权限没有通过，需要申请
-				ActivityCompat.requestPermissions(this, new String[]{unauthoPersssions.get(0)}, requestCode);
+				String[] ss = new String[unauthoPersssions.size()];
+				unauthoPersssions.toArray(ss);
+				ActivityCompat.requestPermissions(this, ss, requestCode);
+			}
+		}else {
+			if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, requestCode);
 			}
 		}
     }
